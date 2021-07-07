@@ -1,6 +1,7 @@
 package ch.buerki.futurascanner.ui.scan;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,27 +25,25 @@ import ch.buerki.futurascanner.ui.scan.helpers.ItemAdapter;
 
 public class ScanActivity extends AppCompatActivity {
 
-    private final Analyzer analyzer;
+    private ItemDao itemDao;
+    private Analyzer analyzer;
+    private Block currentBlock;
     private BeepPlayer beepPlayer;
     private PreviewHandler previewHandler;
-
-    public ScanActivity() {
-        analyzer = new Analyzer();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
+        analyzer = new Analyzer();
         beepPlayer = new BeepPlayer(getApplicationContext());
-
         previewHandler = new PreviewHandler(findViewById(R.id.preview), this);
 
         BlockDao blockDao = AppDataBase.getDatabase(getApplicationContext()).blockDao();
-        ItemDao itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
+        itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
 
-        Block currentBlock = blockDao.getById(getIntent().getIntExtra("blockId", 0));
+        currentBlock = blockDao.getById(getIntent().getIntExtra("blockId", 0));
         ((TextView) findViewById(R.id.s_text_block)).setText("Block " + currentBlock.getNumber());
 
         RecyclerView recyclerView = findViewById(R.id.s_item_list);
@@ -102,6 +101,22 @@ public class ScanActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            try {
+                analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
+                    AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
+                    beepPlayer.playShort();
+                });
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
