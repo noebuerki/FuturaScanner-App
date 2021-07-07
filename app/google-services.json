@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "505290837641",
+    "project_id": "futurascanner-fd7db",
+    "storage_bucket": "futurascanner-fd7db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505290837641:android:6c960b6a775f4efdfd0058",
+        "android_client_info": {
+          "package_name": "ch.buerki.futurascanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505290837641-laifavf6gk62qedmhhdp1t57qaa7ohb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVJni6Y6jR3OiDTYIiqRk44cUaVaPe7wE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505290837641-laifavf6gk62qedmhhdp1t57qaa7ohb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

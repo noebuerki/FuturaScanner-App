@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.SettingsFragment">
+
+    <Button
+        android:id="@+id/settings_update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="Aktualisieren"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_field_date" />
+
+    <TextView
+        android:id="@+id/settings_text_devicenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="Gerätenummer"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/settings_field_devicenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/settings_text_devicenumber"
+        app:layout_constraintStart_toStartOf="@+id/settings_text_devicenumber"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_devicenumber" />
+
+    <TextView
+        android:id="@+id/settings_text_serverip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="Server IP-Adresse"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_field_devicenumber" />
+
+    <EditText
+        android:id="@+id/settings_field_serverip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/settings_text_serverip"
+        app:layout_constraintStart_toStartOf="@+id/settings_text_serverip"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_serverip" />
+
+    <TextView
+        android:id="@+id/settings_text_branch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="Filiale"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_field_serverip" />
+
+    <EditText
+        android:id="@+id/settings_field_branch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/settings_text_branch"
+        app:layout_constraintStart_toStartOf="@+id/settings_text_branch"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_branch" />
+
+    <TextView
+        android:id="@+id/settings_text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="Datum"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_field_branch" />
+
+    <EditText
+        android:id="@+id/settings_field_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono"
+        android:inputType="date"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/settings_text_date"
+        app:layout_constraintStart_toStartOf="@+id/settings_text_date"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
