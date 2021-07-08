@@ -50,23 +50,27 @@ public class BlockActivity extends AppCompatActivity {
                     int targetQuantity = Integer.parseInt(targetQuantityString);
 
                     if (blockNumber >= 1 && targetQuantity >= 1) {
-                        Block dataBaseBlock = blockDao.getByNumber(blockNumber);
+                        if (blockNumber != currentBlock.getNumber() || targetQuantity != currentBlock.getTargetQuantity()){
+                            Block dataBaseBlock = blockDao.getByNumber(blockNumber);
 
-                        if (dataBaseBlock == null || currentBlock.getNumber() == blockNumber) {
-                            currentBlock.setNumber(blockNumber);
-                            currentBlock.setTargetQuantity(targetQuantity);
+                            if (dataBaseBlock == null || currentBlock.getNumber() == blockNumber) {
+                                currentBlock.setNumber(blockNumber);
+                                currentBlock.setTargetQuantity(targetQuantity);
 
-                            AppDataBase.databaseWriteExecutor.execute(() -> blockDao.update(currentBlock));
+                                AppDataBase.databaseWriteExecutor.execute(() -> blockDao.update(currentBlock));
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Blocknummer bereits vergeben!", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Blocknummer bereits vergeben", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Keine veränderten Werte!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Werte müssen grösser gleich 1 sein", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Werte müssen grösser gleich 1 sein!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Werte dürfen nicht Leer sein", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Werte dürfen nicht Leer sein!", Toast.LENGTH_SHORT).show();
                 }
             });
 
