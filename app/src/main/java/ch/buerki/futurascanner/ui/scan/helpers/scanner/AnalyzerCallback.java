@@ -1,4 +1,4 @@
-package ch.buerki.futurascanner.scanner;
+package ch.buerki.futurascanner.ui.scan.helpers.scanner;
 
 import com.google.mlkit.vision.barcode.Barcode;
 

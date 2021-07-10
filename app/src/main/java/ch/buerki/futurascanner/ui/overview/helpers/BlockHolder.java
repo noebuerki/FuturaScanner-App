@@ -23,9 +23,9 @@ public class BlockHolder extends RecyclerView.ViewHolder {
         super(itemView);
         this.itemView = itemView;
         this.itemView.setOnClickListener(itemListener);
-        title = itemView.findViewById(R.id.block_title);
-        details = itemView.findViewById(R.id.block_details);
-        editIcon = itemView.findViewById(R.id.block_edit);
+        title = itemView.findViewById(R.id.row_block_title);
+        details = itemView.findViewById(R.id.row_block_details);
+        editIcon = itemView.findViewById(R.id.row_block_edit);
         editIcon.setOnClickListener(editListener);
     }
 

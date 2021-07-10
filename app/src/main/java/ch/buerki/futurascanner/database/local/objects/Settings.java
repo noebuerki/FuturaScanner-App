@@ -12,7 +12,7 @@ public class Settings {
     private int id;
 
     @ColumnInfo(name = "deviceNumber")
-    private int deviceNumber = 1;
+    private int deviceNumber;
 
     @ColumnInfo(name = "serverIp")
     private String serverIp;

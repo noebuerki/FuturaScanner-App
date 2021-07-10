@@ -38,7 +38,7 @@ public class BlockActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.b_field_number)).setText(Integer.toString(currentBlock.getNumber()));
             ((TextView) findViewById(R.id.b_field_expected_quantity)).setText(Integer.toString(currentBlock.getTargetQuantity()));
 
-            Button saveButton = findViewById(R.id.b_save_button);
+            Button saveButton = findViewById(R.id.b_button_save);
             saveButton.setText("Aktualisieren");
 
             saveButton.setOnClickListener(v -> {
@@ -50,7 +50,7 @@ public class BlockActivity extends AppCompatActivity {
                     int targetQuantity = Integer.parseInt(targetQuantityString);
 
                     if (blockNumber >= 1 && targetQuantity >= 1) {
-                        if (blockNumber != currentBlock.getNumber() || targetQuantity != currentBlock.getTargetQuantity()){
+                        if (blockNumber != currentBlock.getNumber() || targetQuantity != currentBlock.getTargetQuantity()) {
                             Block dataBaseBlock = blockDao.getByNumber(blockNumber);
 
                             if (dataBaseBlock == null || currentBlock.getNumber() == blockNumber) {
@@ -74,14 +74,14 @@ public class BlockActivity extends AppCompatActivity {
                 }
             });
 
-            findViewById(R.id.b_delete_button).setOnClickListener(v -> AppDataBase.databaseWriteExecutor.execute(() -> {
+            findViewById(R.id.b_button_delete).setOnClickListener(v -> AppDataBase.databaseWriteExecutor.execute(() -> {
                 blockDao.delete(currentBlock);
                 itemDao.deleteByBlockNumber(currentBlock.getNumber());
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }));
 
         } else {
-            Button saveButton = findViewById(R.id.b_save_button);
+            Button saveButton = findViewById(R.id.b_button_save);
 
             saveButton.setOnClickListener(v -> {
                 String blockNumberString = ((TextView) findViewById(R.id.b_field_number)).getText().toString();
@@ -110,7 +110,7 @@ public class BlockActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Werte dürfen nicht Leer sein", Toast.LENGTH_SHORT).show();
                 }
             });
-            findViewById(R.id.b_delete_button).setVisibility(View.GONE);
+            findViewById(R.id.b_button_delete).setVisibility(View.GONE);
         }
     }
 }

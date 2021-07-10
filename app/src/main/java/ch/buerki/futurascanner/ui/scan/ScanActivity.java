@@ -18,10 +18,10 @@ import ch.buerki.futurascanner.database.local.dal.BlockDao;
 import ch.buerki.futurascanner.database.local.dal.ItemDao;
 import ch.buerki.futurascanner.database.local.objects.Block;
 import ch.buerki.futurascanner.database.local.objects.Item;
-import ch.buerki.futurascanner.scanner.Analyzer;
-import ch.buerki.futurascanner.scanner.BeepPlayer;
-import ch.buerki.futurascanner.scanner.PreviewHandler;
 import ch.buerki.futurascanner.ui.scan.helpers.ItemAdapter;
+import ch.buerki.futurascanner.ui.scan.helpers.scanner.Analyzer;
+import ch.buerki.futurascanner.ui.scan.helpers.scanner.BeepPlayer;
+import ch.buerki.futurascanner.ui.scan.helpers.scanner.PreviewHandler;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class ScanActivity extends AppCompatActivity {
 
         analyzer = new Analyzer();
         beepPlayer = new BeepPlayer(getApplicationContext());
-        previewHandler = new PreviewHandler(findViewById(R.id.preview), this);
+        previewHandler = new PreviewHandler(findViewById(R.id.s_preview), this);
 
         BlockDao blockDao = AppDataBase.getDatabase(getApplicationContext()).blockDao();
         itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
@@ -46,12 +46,12 @@ public class ScanActivity extends AppCompatActivity {
         currentBlock = blockDao.getById(getIntent().getIntExtra("blockId", 0));
         ((TextView) findViewById(R.id.s_text_block)).setText("Block " + currentBlock.getNumber());
 
-        RecyclerView recyclerView = findViewById(R.id.s_item_list);
+        RecyclerView recyclerView = findViewById(R.id.s_list_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         ItemAdapter itemAdapter = new ItemAdapter(new ItemAdapter.LocationDiff(), v -> AppDataBase.databaseWriteExecutor.execute(() -> itemDao.deleteById(Integer.parseInt(v.getTag().toString()))));
         recyclerView.setAdapter(itemAdapter);
 
-        ImageView torchToggle = findViewById(R.id.torch_toggle);
+        ImageView torchToggle = findViewById(R.id.s_toggle_torch);
         torchToggle.setOnClickListener(v -> {
             if (previewHandler.toggleTorch()) {
                 torchToggle.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_on_36));
@@ -60,7 +60,7 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.s_button).setOnClickListener(v -> {
+        findViewById(R.id.s_button_scan).setOnClickListener(v -> {
             try {
                 analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
                     AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
@@ -105,7 +105,7 @@ public class ScanActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             try {
                 analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
                     AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));

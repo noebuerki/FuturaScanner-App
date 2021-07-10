@@ -20,9 +20,9 @@ public class ItemHolder extends RecyclerView.ViewHolder {
 
     private ItemHolder(@NonNull View itemView, View.OnClickListener deleteListener) {
         super(itemView);
-        barcode = itemView.findViewById(R.id.item_barcode);
-        position = itemView.findViewById(R.id.item_position);
-        deleteIcon = itemView.findViewById(R.id.item_delete);
+        barcode = itemView.findViewById(R.id.row_item_barcode);
+        position = itemView.findViewById(R.id.row_item_position);
+        deleteIcon = itemView.findViewById(R.id.row_item_delete);
         deleteIcon.setOnClickListener(deleteListener);
     }
 

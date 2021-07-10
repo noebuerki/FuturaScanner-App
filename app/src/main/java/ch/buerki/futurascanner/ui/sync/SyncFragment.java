@@ -38,7 +38,7 @@ public class SyncFragment extends Fragment {
         boolean canTestConnection = true;
 
         List<Block> blockList = blockDao.getAll();
-        binding.textBlockCountResult.setText(Integer.toString(blockList.size()));
+        binding.syTextBlockCountResult.setText(Integer.toString(blockList.size()));
         List<Item> itemList = itemDao.getAll();
 
         if (blockList.size() < 1 || itemList.size() < 1) {
@@ -50,88 +50,88 @@ public class SyncFragment extends Fragment {
         if (!settingsList.isEmpty()) {
             settings = settingsList.get(0);
 
-            binding.textDeviceNumberResult.setText(Integer.toString(settings.getDeviceNumber()));
+            binding.syTextDeviceNumberResult.setText(Integer.toString(settings.getDeviceNumber()));
 
             if (settings.getServerIp().equals("")) {
                 canTestConnection = false;
-                binding.textServerResult.setText("-");
+                binding.syTextServerResult.setText("-");
             } else {
-                binding.textServerResult.setText(settings.getServerIp());
+                binding.syTextServerResult.setText(settings.getServerIp());
             }
 
-            binding.textBranchResult.setText(Integer.toString(settings.getBranch()));
+            binding.syTextBranchResult.setText(Integer.toString(settings.getBranch()));
 
             if (settings.getDate().equals("")) {
                 canTestConnection = false;
-                binding.textDateResult.setText("-");
+                binding.syTextDateResult.setText("-");
             } else {
-                binding.textDateResult.setText(settings.getDate());
+                binding.syTextDateResult.setText(settings.getDate());
             }
         } else {
             canTestConnection = false;
-            binding.textDeviceNumberResult.setText("-");
-            binding.textServerResult.setText("-");
-            binding.textBranchResult.setText("-");
-            binding.textDateResult.setText("-");
+            binding.syTextDeviceNumberResult.setText("-");
+            binding.syTextServerResult.setText("-");
+            binding.syTextBranchResult.setText("-");
+            binding.syTextDateResult.setText("-");
         }
 
         if (canTestConnection) {
-            binding.buttonCheckConnection.setEnabled(true);
+            binding.syButtonCheckConnection.setEnabled(true);
         }
 
         Connector connector = new Connector();
         Settings finalSettings = settings;
 
-        binding.buttonCheckConnection.setOnClickListener(v -> {
-            binding.checkConnectionOk.setVisibility(View.INVISIBLE);
-            binding.checkConnectionFail.setVisibility(View.INVISIBLE);
-            binding.progressCheckConnection.setVisibility(View.VISIBLE);
+        binding.syButtonCheckConnection.setOnClickListener(v -> {
+            binding.syImageCheckConnectionOk.setVisibility(View.INVISIBLE);
+            binding.syImageCheckConnectionFail.setVisibility(View.INVISIBLE);
+            binding.syProgressCheckConnection.setVisibility(View.VISIBLE);
             connector.testConnection(finalSettings, this.getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
-                    binding.buttonSyncData.setEnabled(true);
-                    binding.checkConnectionOk.setVisibility(View.VISIBLE);
-                    binding.progressCheckConnection.setVisibility(View.INVISIBLE);
+                    binding.syButtonSyncData.setEnabled(true);
+                    binding.syImageCheckConnectionOk.setVisibility(View.VISIBLE);
+                    binding.syProgressCheckConnection.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onFail() {
-                    binding.checkConnectionFail.setVisibility(View.VISIBLE);
-                    binding.progressCheckConnection.setVisibility(View.INVISIBLE);
+                    binding.syImageCheckConnectionFail.setVisibility(View.VISIBLE);
+                    binding.syProgressCheckConnection.setVisibility(View.INVISIBLE);
                 }
             });
         });
 
-        binding.buttonSyncData.setOnClickListener(v -> {
+        binding.syButtonSyncData.setOnClickListener(v -> {
             StringConverter stringConverter = new StringConverter();
             String message = stringConverter.generateString(blockDao, itemDao, finalSettings);
-            binding.syncDataOk.setVisibility(View.INVISIBLE);
-            binding.syncDataFail.setVisibility(View.INVISIBLE);
-            binding.progressSyncData.setVisibility(View.VISIBLE);
+            binding.syImageSyncDataOk.setVisibility(View.INVISIBLE);
+            binding.syImageSyncDataFail.setVisibility(View.INVISIBLE);
+            binding.syProgressSyncData.setVisibility(View.VISIBLE);
             connector.sendString(message, finalSettings, this.getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
-                    binding.buttonSyncData.setEnabled(false);
-                    binding.buttonDeleteLocal.setEnabled(true);
-                    binding.buttonCheckConnection.setEnabled(false);
-                    binding.syncDataOk.setVisibility(View.VISIBLE);
-                    binding.progressSyncData.setVisibility(View.INVISIBLE);
+                    binding.syButtonSyncData.setEnabled(false);
+                    binding.syButtonDeleteLocal.setEnabled(true);
+                    binding.syButtonCheckConnection.setEnabled(false);
+                    binding.syImageSyncDataOk.setVisibility(View.VISIBLE);
+                    binding.syProgressSyncData.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onFail() {
-                    binding.syncDataFail.setVisibility(View.VISIBLE);
-                    binding.progressSyncData.setVisibility(View.INVISIBLE);
+                    binding.syImageSyncDataFail.setVisibility(View.VISIBLE);
+                    binding.syProgressSyncData.setVisibility(View.INVISIBLE);
                 }
             });
         });
 
-        binding.buttonDeleteLocal.setOnClickListener(v -> {
+        binding.syButtonDeleteLocal.setOnClickListener(v -> {
             blockDao.deleteAll();
             itemDao.deleteAll();
 
-            binding.buttonDeleteLocal.setEnabled(false);
-            binding.deleteLocalOk.setVisibility(View.VISIBLE);
+            binding.syButtonDeleteLocal.setEnabled(false);
+            binding.syImageDeleteLocalOk.setVisibility(View.VISIBLE);
         });
 
 

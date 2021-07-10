@@ -9,9 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:textSize="24sp"
         android:fontFamily="@font/roboto_mono"
         android:text="Block-Nummer"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/b_text_expected_quantity" />
 
     <Button
-        android:id="@+id/b_save_button"
+        android:id="@+id/b_button_save"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:fontFamily="@font/roboto_mono"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/b_field_expected_quantity" />
 
     <ImageView
-        android:id="@+id/b_delete_button"
+        android:id="@+id/b_button_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"

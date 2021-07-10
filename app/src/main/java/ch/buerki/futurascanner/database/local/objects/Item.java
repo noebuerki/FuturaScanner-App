@@ -14,21 +14,14 @@ public class Item {
     private int id;
 
     @ColumnInfo(name = "blockId")
-    private int blockId;
+    private final int blockId;
 
     @ColumnInfo(name = "position")
     private int position;
 
     @NonNull
     @ColumnInfo(name = "barcode")
-    private String barcode;
-
-    @Ignore
-    public Item(int id, int blockId, int position, @NonNull String barcode) {
-        this(blockId, barcode);
-        this.id = id;
-        this.position = position;
-    }
+    private final String barcode;
 
     public Item(int blockId, @NonNull String barcode) {
         this.blockId = blockId;
@@ -47,10 +40,6 @@ public class Item {
         return blockId;
     }
 
-    public void setBlockId(int blockId) {
-        this.blockId = blockId;
-    }
-
     public int getPosition() {
         return position;
     }
@@ -62,9 +51,5 @@ public class Item {
     @NonNull
     public String getBarcode() {
         return barcode;
-    }
-
-    public void setBarcode(@NonNull String barcode) {
-        this.barcode = barcode;
     }
 }

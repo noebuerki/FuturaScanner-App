@@ -3,7 +3,6 @@ package ch.buerki.futurascanner.ui.settings;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,27 +38,27 @@ public class SettingsFragment extends Fragment implements TextWatcher {
             settingsDao.insert(settings);
         }
 
-        binding.settingsFieldDevicenumber.setText(Integer.toString(settings.getDeviceNumber()));
-        binding.settingsFieldDevicenumber.addTextChangedListener(this);
-        binding.settingsFieldServerip.setText(settings.getServerIp());
-        binding.settingsFieldServerip.addTextChangedListener(this);
-        binding.settingsFieldBranch.setText(Integer.toString(settings.getBranch()));
-        binding.settingsFieldBranch.addTextChangedListener(this);
-        binding.settingsFieldDate.setText(settings.getDate());
-        binding.settingsFieldDate.addTextChangedListener(this);
+        binding.seFieldDeviceNumber.setText(Integer.toString(settings.getDeviceNumber()));
+        binding.seFieldDeviceNumber.addTextChangedListener(this);
+        binding.seFieldServerIp.setText(settings.getServerIp());
+        binding.seFieldServerIp.addTextChangedListener(this);
+        binding.seFieldBranch.setText(Integer.toString(settings.getBranch()));
+        binding.seFieldBranch.addTextChangedListener(this);
+        binding.seFieldDate.setText(settings.getDate());
+        binding.seFieldDate.addTextChangedListener(this);
 
-        binding.settingsUpdateButton.setOnClickListener(v -> {
-            String deviceNumberString = binding.settingsFieldDevicenumber.getText().toString();
-            String branchString = binding.settingsFieldBranch.getText().toString();
+        binding.seButtonUpdate.setOnClickListener(v -> {
+            String deviceNumberString = binding.seFieldDeviceNumber.getText().toString();
+            String branchString = binding.seFieldBranch.getText().toString();
             settings.setDeviceNumber(Integer.parseInt(deviceNumberString));
-            settings.setServerIp(binding.settingsFieldServerip.getText().toString());
+            settings.setServerIp(binding.seFieldServerIp.getText().toString());
             settings.setBranch(Integer.parseInt(branchString));
-            settings.setDate(binding.settingsFieldDate.getText().toString());
+            settings.setDate(binding.seFieldDate.getText().toString());
 
             AppDataBase.databaseWriteExecutor.execute(() -> settingsDao.update(settings));
             afterTextChanged(null);
         });
-        binding.settingsUpdateButton.setEnabled(false);
+        binding.seButtonUpdate.setEnabled(false);
 
         return binding.getRoot();
     }
@@ -82,29 +81,29 @@ public class SettingsFragment extends Fragment implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        String deviceNumber = binding.settingsFieldDevicenumber.getText().toString();
+        String deviceNumber = binding.seFieldDeviceNumber.getText().toString();
         boolean isDeviceNumberEmpty = deviceNumber.equals("");
         boolean hasDeviceNumberChanged = false;
         if (!isDeviceNumberEmpty) {
             hasDeviceNumberChanged = settings.getDeviceNumber() != Integer.parseInt(deviceNumber);
         }
 
-        String serverIp = binding.settingsFieldServerip.getText().toString();
+        String serverIp = binding.seFieldServerIp.getText().toString();
         boolean isServerIpEmpty = serverIp.equals("");
         boolean hasServerIpChanged = !settings.getServerIp().equals(serverIp);
 
 
-        String branch = binding.settingsFieldBranch.getText().toString();
+        String branch = binding.seFieldBranch.getText().toString();
         boolean isBranchEmpty = branch.equals("");
-        boolean hasBranchChanged =false;
-        if (!isBranchEmpty){
+        boolean hasBranchChanged = false;
+        if (!isBranchEmpty) {
             hasBranchChanged = settings.getBranch() != Integer.parseInt(branch);
         }
 
-        String date = binding.settingsFieldDate.getText().toString();
+        String date = binding.seFieldDate.getText().toString();
         boolean isDateEmpty = date.equals("");
         boolean hasDateChanged = !settings.getDate().equals(date);
 
-        binding.settingsUpdateButton.setEnabled((!isDeviceNumberEmpty && !isServerIpEmpty && !isBranchEmpty && !isDateEmpty) && (hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged));
+        binding.seButtonUpdate.setEnabled((!isDeviceNumberEmpty && !isServerIpEmpty && !isBranchEmpty && !isDateEmpty) && (hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged));
     }
 }

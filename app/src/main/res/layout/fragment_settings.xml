@@ -7,7 +7,7 @@
     tools:context=".ui.settings.SettingsFragment">
 
     <Button
-        android:id="@+id/settings_update_button"
+        android:id="@+id/se_button_update"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:fontFamily="@font/roboto_mono"
@@ -16,10 +16,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_field_date" />
+        app:layout_constraintTop_toBottomOf="@+id/se_field_date" />
 
     <TextView
-        android:id="@+id/settings_text_devicenumber"
+        android:id="@+id/se_text_device_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/settings_field_devicenumber"
+        android:id="@+id/se_field_device_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,12 +41,12 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/settings_text_devicenumber"
-        app:layout_constraintStart_toStartOf="@+id/settings_text_devicenumber"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text_devicenumber" />
+        app:layout_constraintEnd_toEndOf="@+id/se_text_device_number"
+        app:layout_constraintStart_toStartOf="@+id/se_text_device_number"
+        app:layout_constraintTop_toBottomOf="@+id/se_text_device_number" />
 
     <TextView
-        android:id="@+id/settings_text_serverip"
+        android:id="@+id/se_text_server_ip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -55,10 +55,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_field_devicenumber" />
+        app:layout_constraintTop_toBottomOf="@+id/se_field_device_number" />
 
     <EditText
-        android:id="@+id/settings_field_serverip"
+        android:id="@+id/se_field_server_ip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -67,12 +67,12 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/settings_text_serverip"
-        app:layout_constraintStart_toStartOf="@+id/settings_text_serverip"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text_serverip" />
+        app:layout_constraintEnd_toEndOf="@+id/se_text_server_ip"
+        app:layout_constraintStart_toStartOf="@+id/se_text_server_ip"
+        app:layout_constraintTop_toBottomOf="@+id/se_text_server_ip" />
 
     <TextView
-        android:id="@+id/settings_text_branch"
+        android:id="@+id/se_text_branch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -81,10 +81,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_field_serverip" />
+        app:layout_constraintTop_toBottomOf="@+id/se_field_server_ip" />
 
     <EditText
-        android:id="@+id/settings_field_branch"
+        android:id="@+id/se_field_branch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -94,12 +94,12 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/settings_text_branch"
-        app:layout_constraintStart_toStartOf="@+id/settings_text_branch"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text_branch" />
+        app:layout_constraintEnd_toEndOf="@+id/se_text_branch"
+        app:layout_constraintStart_toStartOf="@+id/se_text_branch"
+        app:layout_constraintTop_toBottomOf="@+id/se_text_branch" />
 
     <TextView
-        android:id="@+id/settings_text_date"
+        android:id="@+id/se_text_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -108,10 +108,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_field_branch" />
+        app:layout_constraintTop_toBottomOf="@+id/se_field_branch" />
 
     <EditText
-        android:id="@+id/settings_field_date"
+        android:id="@+id/se_field_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -121,8 +121,8 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/settings_text_date"
-        app:layout_constraintStart_toStartOf="@+id/settings_text_date"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text_date" />
+        app:layout_constraintEnd_toEndOf="@+id/se_text_date"
+        app:layout_constraintStart_toStartOf="@+id/se_text_date"
+        app:layout_constraintTop_toBottomOf="@+id/se_text_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

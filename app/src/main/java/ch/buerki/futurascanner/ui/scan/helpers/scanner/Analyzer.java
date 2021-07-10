@@ -1,4 +1,4 @@
-package ch.buerki.futurascanner.scanner;
+package ch.buerki.futurascanner.ui.scan.helpers.scanner;
 
 import android.graphics.Bitmap;
 
@@ -14,7 +14,7 @@ public class Analyzer {
 
     public Analyzer() {
         options = new BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(Barcode.FORMAT_EAN_13)
+                .setBarcodeFormats(Barcode.FORMAT_EAN_13, Barcode.FORMAT_CODE_128)
                 .build();
     }
 

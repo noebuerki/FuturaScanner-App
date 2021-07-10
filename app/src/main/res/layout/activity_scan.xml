@@ -7,7 +7,7 @@
     tools:context=".ui.scan.ScanActivity">
 
     <Button
-        android:id="@+id/s_button"
+        android:id="@+id/s_button_scan"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -44,17 +44,17 @@
         app:layout_constraintTop_toTopOf="@+id/s_text_block" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/s_item_list"
+        android:id="@+id/s_list_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/s_button"
+        app:layout_constraintBottom_toTopOf="@+id/s_button_scan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preview" />
+        app:layout_constraintTop_toBottomOf="@+id/s_preview" />
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/preview"
+        android:id="@+id/s_preview"
         android:layout_width="0dp"
         android:layout_height="284dp"
         android:layout_marginTop="8dp"
@@ -65,14 +65,14 @@
     </androidx.camera.view.PreviewView>
 
     <ImageView
-        android:id="@+id/torch_toggle"
+        android:id="@+id/s_toggle_torch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:tint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/preview"
-        app:srcCompat="@drawable/ic_baseline_flash_off_36" />
+        app:layout_constraintTop_toTopOf="@+id/s_preview"
+        app:srcCompat="@drawable/ic_baseline_flash_off_36"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
