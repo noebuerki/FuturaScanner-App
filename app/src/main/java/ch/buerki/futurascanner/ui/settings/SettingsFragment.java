@@ -76,11 +76,6 @@ public class SettingsFragment extends Fragment implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
         String deviceNumber = binding.seFieldDeviceNumber.getText().toString();
         boolean isDeviceNumberEmpty = deviceNumber.equals("");
         boolean hasDeviceNumberChanged = false;
@@ -105,5 +100,10 @@ public class SettingsFragment extends Fragment implements TextWatcher {
         boolean hasDateChanged = !settings.getDate().equals(date);
 
         binding.seButtonUpdate.setEnabled((!isDeviceNumberEmpty && !isServerIpEmpty && !isBranchEmpty && !isDateEmpty) && (hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged));
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }
