@@ -56,7 +56,7 @@ public class SettingsFragment extends Fragment implements TextWatcher {
             settings.setDate(binding.seFieldDate.getText().toString());
 
             AppDataBase.databaseWriteExecutor.execute(() -> settingsDao.update(settings));
-            afterTextChanged(null);
+            onTextChanged("", 0, 0, 0);
         });
         binding.seButtonUpdate.setEnabled(false);
 

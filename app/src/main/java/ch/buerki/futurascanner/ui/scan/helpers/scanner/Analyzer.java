@@ -14,7 +14,7 @@ public class Analyzer {
 
     public Analyzer() {
         options = new BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(Barcode.FORMAT_EAN_13, Barcode.FORMAT_CODE_128)
+                .setBarcodeFormats(Barcode.FORMAT_EAN_13, Barcode.FORMAT_ITF)
                 .build();
     }
 
