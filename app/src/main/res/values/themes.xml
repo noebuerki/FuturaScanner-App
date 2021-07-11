@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
         <item name="colorOnBackground">@color/black</item>
+        <item name="colorOnPrimarySurface">@color/white</item>
         <item name="buttonTint">@color/white</item>
-        <item name="android:drawableTint">@color/black</item>
     </style>
 </resources>
