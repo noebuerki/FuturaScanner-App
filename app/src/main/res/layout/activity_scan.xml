@@ -7,7 +7,7 @@
     tools:context=".ui.scan.ScanActivity">
 
     <Button
-        android:id="@+id/s_button_scan"
+        android:id="@+id/sc_button_scan"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -18,10 +18,23 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sc_button_write" />
+
+    <Button
+        android:id="@+id/sc_button_write"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto_mono"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:icon="@drawable/ic_baseline_create_36"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/s_text_block"
+        android:id="@+id/sc_text_block"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/s_text_counter"
+        android:id="@+id/sc_text_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -41,31 +54,33 @@
         android:text="15 / 20"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/s_text_block" />
+        app:layout_constraintTop_toTopOf="@+id/sc_text_block" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/s_list_items"
+        android:id="@+id/sc_list_items"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="250dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/s_button_scan"
+        app:layout_constraintBottom_toTopOf="@+id/sc_button_scan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s_preview" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.camera.view.PreviewView
         android:id="@+id/s_preview"
         android:layout_width="0dp"
-        android:layout_height="284dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/sc_list_items"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s_text_block">
+        app:layout_constraintTop_toBottomOf="@+id/sc_text_block">
 
     </androidx.camera.view.PreviewView>
 
     <ImageView
-        android:id="@+id/s_toggle_torch"
+        android:id="@+id/sc_toggle_torch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -74,5 +89,57 @@
         app:layout_constraintTop_toTopOf="@+id/s_preview"
         app:srcCompat="@drawable/ic_baseline_flash_off_36"
         app:tint="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sc_sub_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/sc_list_items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/s_preview"
+        app:layout_constraintTop_toTopOf="@+id/s_preview">
+
+        <Button
+            android:id="@+id/se_button_update2"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/roboto_mono"
+            android:text="Hinzufügen"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/se_field_date" />
+
+        <TextView
+            android:id="@+id/sc_text_barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_mono"
+            android:text="Barcode"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/se_field_server_ip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_mono"
+            android:lines="1"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sc_text_barcode" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

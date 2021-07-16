@@ -1,14 +1,14 @@
 package ch.buerki.futurascanner.ui.scan;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Objects;
 
@@ -18,6 +18,8 @@ import ch.buerki.futurascanner.database.local.dal.BlockDao;
 import ch.buerki.futurascanner.database.local.dal.ItemDao;
 import ch.buerki.futurascanner.database.local.objects.Block;
 import ch.buerki.futurascanner.database.local.objects.Item;
+import ch.buerki.futurascanner.databinding.ActivityScanBinding;
+import ch.buerki.futurascanner.ui.scan.helpers.FragmentEANDialog;
 import ch.buerki.futurascanner.ui.scan.helpers.ItemAdapter;
 import ch.buerki.futurascanner.ui.scan.helpers.scanner.Analyzer;
 import ch.buerki.futurascanner.ui.scan.helpers.scanner.BeepPlayer;
@@ -25,6 +27,7 @@ import ch.buerki.futurascanner.ui.scan.helpers.scanner.PreviewHandler;
 
 public class ScanActivity extends AppCompatActivity {
 
+    private Context context;
     private ItemDao itemDao;
     private Analyzer analyzer;
     private Block currentBlock;
@@ -34,7 +37,8 @@ public class ScanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
+        ActivityScanBinding binding = ActivityScanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         analyzer = new Analyzer();
         beepPlayer = new BeepPlayer(getApplicationContext());
@@ -44,23 +48,21 @@ public class ScanActivity extends AppCompatActivity {
         itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
 
         currentBlock = blockDao.getById(getIntent().getIntExtra("blockId", 0));
-        ((TextView) findViewById(R.id.s_text_block)).setText("Block " + currentBlock.getNumber());
+        binding.scTextBlock.setText("Block " + currentBlock.getNumber());
 
-        RecyclerView recyclerView = findViewById(R.id.s_list_items);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        binding.scListItems.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         ItemAdapter itemAdapter = new ItemAdapter(new ItemAdapter.LocationDiff(), v -> AppDataBase.databaseWriteExecutor.execute(() -> itemDao.deleteById(Integer.parseInt(v.getTag().toString()))));
-        recyclerView.setAdapter(itemAdapter);
+        binding.scListItems.setAdapter(itemAdapter);
 
-        ImageView torchToggle = findViewById(R.id.s_toggle_torch);
-        torchToggle.setOnClickListener(v -> {
+        binding.scToggleTorch.setOnClickListener(v -> {
             if (previewHandler.toggleTorch()) {
-                torchToggle.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_on_36));
+                binding.scToggleTorch.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_on_36));
             } else {
-                torchToggle.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_off_36));
+                binding.scToggleTorch.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_off_36));
             }
         });
 
-        findViewById(R.id.s_button_scan).setOnClickListener(v -> {
+        binding.scButtonScan.setOnClickListener(v -> {
             try {
                 analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
                     AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
@@ -68,6 +70,14 @@ public class ScanActivity extends AppCompatActivity {
                 });
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        });
+
+        binding.scButtonWrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new FragmentEANDialog(currentBlock.getId(), itemDao, beepPlayer);
+                dialogFragment.show(getSupportFragmentManager(), "AddEanFragment");
             }
         });
 
@@ -84,7 +94,7 @@ public class ScanActivity extends AppCompatActivity {
             if (hasListChanged) {
                 AppDataBase.databaseWriteExecutor.execute(() -> itemDao.update(items.toArray(new Item[0])));
             } else {
-                ((TextView) findViewById(R.id.s_text_counter)).setText(items.size() + " / " + currentBlock.getTargetQuantity());
+                binding.scTextCounter.setText(items.size() + " / " + currentBlock.getTargetQuantity());
                 if (items.size() == currentBlock.getTargetQuantity()) {
                     new Thread(() -> {
                         try {
@@ -97,7 +107,7 @@ public class ScanActivity extends AppCompatActivity {
                 }
                 itemAdapter.submitList(items);
                 if (items.size() > 0) {
-                    recyclerView.smoothScrollToPosition(items.size() - 1);
+                    binding.scListItems.smoothScrollToPosition(items.size() - 1);
                 }
             }
         });
