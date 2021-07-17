@@ -2,6 +2,10 @@ package ch.buerki.futurascanner.database.server;
 
 import android.app.Activity;
 
+import androidx.room.util.StringUtil;
+
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,9 +48,11 @@ public class Connector {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer.print(message);
                 writer.flush();
-                int answer = reader.read();
+                String answer = reader.readLine();
                 socket.close();
-                if (answer == 50) {
+                String answerCode = answer.split(";")[0];
+                int answerAmount = Integer.parseInt(answer.split(";")[1]);
+                if (answerCode.equals("200") && answerAmount == StringUtils.countMatches(message, "\n")) {
                     activity.runOnUiThread(callback::onSuccess);
                 } else {
                     activity.runOnUiThread(callback::onFail);

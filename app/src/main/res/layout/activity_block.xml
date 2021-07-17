@@ -64,7 +64,7 @@
         android:layout_height="64dp"
         android:enabled="false"
         android:fontFamily="@font/roboto_mono"
-        android:text="Speichern"
+        android:text="Hinzufügen"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

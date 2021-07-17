@@ -1,5 +1,6 @@
 package ch.buerki.futurascanner.database.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.buerki.futurascanner.database.local.dal.BlockDao;

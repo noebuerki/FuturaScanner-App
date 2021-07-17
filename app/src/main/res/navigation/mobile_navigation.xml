@@ -22,4 +22,6 @@
         android:name="ch.buerki.futurascanner.ui.settings.SettingsFragment"
         android:label="Einstellungen"
         tools:layout="@layout/fragment_settings" />
+
+
 </navigation>

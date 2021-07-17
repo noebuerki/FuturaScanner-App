@@ -21,10 +21,10 @@ import ch.buerki.futurascanner.ui.scan.helpers.scanner.BeepPlayer;
 
 public class FragmentEANDialog extends DialogFragment {
 
-    private int blockId;
-    private ItemDao itemDao;
+    private final int blockId;
+    private final ItemDao itemDao;
     private EditText editText;
-    private BeepPlayer beepPlayer;
+    private final BeepPlayer beepPlayer;
 
     public FragmentEANDialog(int blockId, ItemDao itemDao, BeepPlayer beepPlayer) {
         this.blockId = blockId;
@@ -62,7 +62,7 @@ public class FragmentEANDialog extends DialogFragment {
                     @Override
                     public void onClick(View v) {
                         String ean = editText.getText().toString();
-                        if (ean.length() == 12 || ean.length() == 13){
+                        if (ean.length() == 12 || ean.length() == 13) {
                             itemDao.insert(new Item(blockId, ean));
                             beepPlayer.playShort();
                             dialog.dismiss();

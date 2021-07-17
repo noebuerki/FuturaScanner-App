@@ -18,8 +18,8 @@ import ch.buerki.futurascanner.database.local.objects.Settings;
 
 @Database(
         entities = {
-                Block.class,
                 Item.class,
+                Block.class,
                 Settings.class
         },
         version = 1
@@ -43,9 +43,10 @@ public abstract class AppDataBase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public abstract BlockDao blockDao();
-
     public abstract ItemDao itemDao();
+
+    public abstract BlockDao blockDao();
 
     public abstract SettingsDao settingsDao();
 }
+

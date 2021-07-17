@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.util.List;
 
+import ch.buerki.futurascanner.R;
 import ch.buerki.futurascanner.database.local.AppDataBase;
 import ch.buerki.futurascanner.database.local.dal.BlockDao;
 import ch.buerki.futurascanner.database.local.dal.ItemDao;
@@ -130,8 +132,7 @@ public class SyncFragment extends Fragment {
             blockDao.deleteAll();
             itemDao.deleteAll();
 
-            binding.syButtonDeleteLocal.setEnabled(false);
-            binding.syImageDeleteLocalOk.setVisibility(View.VISIBLE);
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_sync);
         });
 
 
