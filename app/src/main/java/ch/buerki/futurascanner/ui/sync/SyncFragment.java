@@ -33,17 +33,16 @@ public class SyncFragment extends Fragment {
 
         binding = FragmentSyncBinding.inflate(inflater, container, false);
 
-        ItemDao itemDao = AppDataBase.getDatabase(getContext()).itemDao();
         BlockDao blockDao = AppDataBase.getDatabase(getContext()).blockDao();
+        ItemDao itemDao = AppDataBase.getDatabase(getContext()).itemDao();
         SettingsDao settingsDao = AppDataBase.getDatabase(getContext()).settingsDao();
 
         boolean canTestConnection = true;
 
-        List<Block> blockList = blockDao.getAll();
-        binding.syTextBlockCountResult.setText(Integer.toString(blockList.size()));
         List<Item> itemList = itemDao.getAll();
+        binding.syTextBlockCountResult.setText(Integer.toString(itemList.size()));
 
-        if (blockList.size() < 1 || itemList.size() < 1) {
+        if (itemList.size() <= 1) {
             canTestConnection = false;
         }
 

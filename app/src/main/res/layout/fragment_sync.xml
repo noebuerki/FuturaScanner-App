@@ -7,16 +7,6 @@
     tools:context=".ui.sync.SyncFragment">
 
     <ImageView
-        android:id="@+id/sy_image_delete_local_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_check_36"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_delete_local"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_delete_local" />
-
-    <ImageView
         android:id="@+id/sy_image_sync_data_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,7 +126,7 @@
         android:text="Gerätenummer"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_block_count" />
+        app:layout_constraintTop_toBottomOf="@+id/sy_text_item_count" />
 
     <TextView
         android:id="@+id/sy_text_block_count_result"
@@ -146,7 +136,7 @@
         android:text="12"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_block_count" />
+        app:layout_constraintTop_toTopOf="@+id/sy_text_item_count" />
 
     <TextView
         android:id="@+id/sy_text_device_number_result"
@@ -159,12 +149,12 @@
         app:layout_constraintTop_toTopOf="@+id/sy_text_device_number" />
 
     <TextView
-        android:id="@+id/sy_text_block_count"
+        android:id="@+id/sy_text_item_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Anzahl Böcke"
+        android:text="Anzahl Artikel"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
