@@ -16,7 +16,6 @@ import ch.buerki.futurascanner.database.local.AppDataBase;
 import ch.buerki.futurascanner.database.local.dal.BlockDao;
 import ch.buerki.futurascanner.database.local.dal.ItemDao;
 import ch.buerki.futurascanner.database.local.dal.SettingsDao;
-import ch.buerki.futurascanner.database.local.objects.Block;
 import ch.buerki.futurascanner.database.local.objects.Item;
 import ch.buerki.futurascanner.database.local.objects.Settings;
 import ch.buerki.futurascanner.database.server.Connector;

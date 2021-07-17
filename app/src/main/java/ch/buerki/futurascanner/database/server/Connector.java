@@ -2,8 +2,6 @@ package ch.buerki.futurascanner.database.server;
 
 import android.app.Activity;
 
-import androidx.room.util.StringUtil;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;

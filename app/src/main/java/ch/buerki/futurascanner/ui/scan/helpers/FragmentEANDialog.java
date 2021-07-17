@@ -25,8 +25,8 @@ public class FragmentEANDialog extends DialogFragment {
 
     private final int blockId;
     private final ItemDao itemDao;
-    private EditText editText;
     private final BeepPlayer beepPlayer;
+    private EditText editText;
 
     public FragmentEANDialog(int blockId, ItemDao itemDao, BeepPlayer beepPlayer) {
         this.blockId = blockId;
@@ -59,7 +59,7 @@ public class FragmentEANDialog extends DialogFragment {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                if ((requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES){
+                if ((requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
                     ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
                     ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
                 }
