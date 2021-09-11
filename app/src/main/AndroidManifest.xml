@@ -17,6 +17,7 @@
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -29,6 +30,7 @@
             android:name=".ui.block.BlockActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Block hinzufügen"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
