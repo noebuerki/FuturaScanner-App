@@ -41,7 +41,7 @@ public class SyncFragment extends Fragment {
         List<Item> itemList = itemDao.getAll();
         binding.syTextBlockCountResult.setText(Integer.toString(itemList.size()));
 
-        if (itemList.size() <= 1) {
+        if (itemList.size() < 1) {
             canTestConnection = false;
         }
 
