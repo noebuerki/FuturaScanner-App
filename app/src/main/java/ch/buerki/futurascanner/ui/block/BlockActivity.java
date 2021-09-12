@@ -106,7 +106,7 @@ public class BlockActivity extends AppCompatActivity {
 
             deleteButton.setOnClickListener(v -> AppDataBase.databaseWriteExecutor.execute(() -> {
                 blockDao.delete(currentBlock);
-                itemDao.deleteByBlockNumber(currentBlock.getNumber());
+                itemDao.deleteByBlockId(currentBlock.getId());
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }));
 

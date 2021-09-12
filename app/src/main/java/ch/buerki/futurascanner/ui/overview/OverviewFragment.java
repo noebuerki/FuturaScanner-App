@@ -34,7 +34,7 @@ public class OverviewFragment extends Fragment {
             Intent intent = new Intent(getContext(), BlockActivity.class);
             intent.putExtra("blockId", Integer.parseInt(v.getTag().toString()));
             startActivity(intent);
-        });
+        }, AppDataBase.getDatabase(getContext()).itemDao());
         binding.oListBlocks.setAdapter(blockAdapter);
 
         AppDataBase.getDatabase(getContext()).blockDao().getAllAsLiveData().observe(getViewLifecycleOwner(), blockAdapter::submitList);

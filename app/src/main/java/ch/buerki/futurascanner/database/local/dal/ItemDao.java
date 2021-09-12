@@ -32,7 +32,7 @@ public interface ItemDao {
     void deleteById(int itemId);
 
     @Query("DELETE FROM item WHERE blockId = :blockId")
-    void deleteByBlockNumber(int blockId);
+    void deleteByBlockId(int blockId);
 
     @Query("DELETE FROM item")
     void deleteAll();

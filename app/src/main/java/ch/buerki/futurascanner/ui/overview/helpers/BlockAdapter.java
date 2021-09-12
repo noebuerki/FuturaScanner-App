@@ -7,15 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import ch.buerki.futurascanner.database.local.dal.ItemDao;
 import ch.buerki.futurascanner.database.local.objects.Block;
+import ch.buerki.futurascanner.database.local.objects.Item;
 
 public class BlockAdapter extends ListAdapter<Block, BlockHolder> {
 
+    private final ItemDao itemDao;
     private final View.OnClickListener itemListener;
     private final View.OnClickListener editListener;
 
-    public BlockAdapter(@NonNull DiffUtil.ItemCallback<Block> diffCallback, View.OnClickListener itemListener, View.OnClickListener editListener) {
+    public BlockAdapter(@NonNull DiffUtil.ItemCallback<Block> diffCallback, View.OnClickListener itemListener, View.OnClickListener editListener, ItemDao itemDao) {
         super(diffCallback);
+        this.itemDao = itemDao;
         this.itemListener = itemListener;
         this.editListener = editListener;
     }
@@ -29,7 +33,7 @@ public class BlockAdapter extends ListAdapter<Block, BlockHolder> {
     @Override
     public void onBindViewHolder(@NonNull BlockHolder holder, int position) {
         Block current = getItem(position);
-        holder.bind(current);
+        holder.bind(current, itemDao);
     }
 
     public static class LocationDiff extends DiffUtil.ItemCallback<Block> {

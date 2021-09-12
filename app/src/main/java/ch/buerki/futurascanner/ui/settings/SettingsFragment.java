@@ -37,6 +37,7 @@ public class SettingsFragment extends Fragment {
             settings = new Settings(1, "", 1, "");
             settings.setId(1);
             AppDataBase.databaseWriteExecutor.execute(() -> settingsDao.insert(settings));
+            settings = settingsDao.getAll().get(0);
         }
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -48,29 +49,25 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String deviceNumber = binding.seFieldDeviceNumber.getText().toString();
-                boolean isDeviceNumberEmpty = deviceNumber.equals("");
                 boolean hasDeviceNumberChanged = false;
-                if (!isDeviceNumberEmpty) {
+                if (!deviceNumber.equals("")) {
                     hasDeviceNumberChanged = settings.getDeviceNumber() != Integer.parseInt(deviceNumber);
                 }
 
                 String serverIp = binding.seFieldServerIp.getText().toString();
-                boolean isServerIpEmpty = serverIp.equals("");
                 boolean hasServerIpChanged = !settings.getServerIp().equals(serverIp);
 
 
                 String branch = binding.seFieldBranch.getText().toString();
-                boolean isBranchEmpty = branch.equals("");
                 boolean hasBranchChanged = false;
-                if (!isBranchEmpty) {
+                if (!branch.equals("")) {
                     hasBranchChanged = settings.getBranch() != Integer.parseInt(branch);
                 }
 
                 String date = binding.seFieldDate.getText().toString();
-                boolean isDateEmpty = date.equals("");
                 boolean hasDateChanged = !settings.getDate().equals(date);
 
-                binding.seButtonUpdate.setEnabled((!isDeviceNumberEmpty && !isServerIpEmpty && !isBranchEmpty && !isDateEmpty) && (hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged));
+                binding.seButtonUpdate.setEnabled((hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged));
             }
 
             @Override
