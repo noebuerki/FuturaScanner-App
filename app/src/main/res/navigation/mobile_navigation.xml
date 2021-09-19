@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_scan"
-        android:name="ch.buerki.futurascanner.ui.overview.OverviewFragment"
+        android:name="ch.noebuerki.futurascanner.ui.overview.OverviewFragment"
         android:label="Erfassen"
         tools:layout="@layout/fragment_overview" />
 
     <fragment
         android:id="@+id/navigation_sync"
-        android:name="ch.buerki.futurascanner.ui.sync.SyncFragment"
+        android:name="ch.noebuerki.futurascanner.ui.sync.SyncFragment"
         android:label="Synchronisieren"
         tools:layout="@layout/fragment_sync" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="ch.buerki.futurascanner.ui.settings.SettingsFragment"
+        android:name="ch.noebuerki.futurascanner.ui.settings.SettingsFragment"
         android:label="Einstellungen"
         tools:layout="@layout/fragment_settings" />
 

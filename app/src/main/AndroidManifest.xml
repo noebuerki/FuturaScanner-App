@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ch.buerki.futurascanner">
+    package="ch.noebuerki.futurascanner">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera2" />
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FuturaScanner">
         <activity
-            android:name=".MainActivity"
+            android:name="ch.noebuerki.futurascanner.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan"
@@ -27,18 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.block.BlockActivity"
+            android:name="ch.noebuerki.futurascanner.ui.block.BlockActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Block hinzufügen"
             android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="ch.noebuerki.futurascanner.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ui.scan.ScanActivity"
+            android:name="ch.noebuerki.futurascanner.ui.scan.ScanActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Scannen"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="ch.noebuerki.futurascanner.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
