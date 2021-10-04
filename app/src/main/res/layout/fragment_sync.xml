@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:enabled="false"
-        android:text="Daten synchronisieren"
+        android:text="@string/sync_data"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/sy_button_delete_local"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:enabled="false"
-        android:text="Lokale Daten löschen"
+        android:text="@string/delete_local_data"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
-        android:text="1"
+        android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/sy_text_branch" />
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Datum"
+        android:text="@string/date"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/sy_text_branch" />
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
-        android:text="1.1.2001"
+        android:text="XX.XX.XXXX"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/sy_text_date" />
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Filiale"
+        android:text="@string/branch"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/sy_text_server" />
@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
-        android:text="192.168.1.1"
+        android:text="XXX.XXX.XXX.XXX"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/sy_text_server" />
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Server"
+        android:text="@string/server"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/sy_text_device_number" />
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Gerätenummer"
+        android:text="@string/device_number"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/sy_text_item_count" />
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
-        android:text="12"
+        android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/sy_text_item_count" />
@@ -143,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
-        android:text="1"
+        android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/sy_text_device_number" />
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Anzahl Artikel"
+        android:text="@string/item_count"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -179,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:enabled="false"
-        android:text="Verbindung prüfen"
+        android:text="@string/check_connection"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/sy_button_sync_data"
         app:layout_constraintStart_toStartOf="@+id/guideline2"

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FuturaScanner</string>
+    <string name="expected_amount">Erwartete Anzahl</string>
+    <string name="add">Hinzufügen</string>
+    <string name="block_number">Block-Nummer</string>
+    <string name="scan">Scannen</string>
+    <string name="update">Aktualisieren</string>
+    <string name="device_number">Gerätenummer</string>
+    <string name="server_ip_address">Server IP-Adresse</string>
+    <string name="branch">Filiale</string>
+    <string name="date">Datum</string>
+    <string name="sync_data">Daten synchronisieren</string>
+    <string name="delete_local_data">Lokale Daten löschen</string>
+    <string name="server">Server</string>
+    <string name="item_count">Anzahl Artikel</string>
+    <string name="check_connection">Verbindung prüfen</string>
+</resources>
