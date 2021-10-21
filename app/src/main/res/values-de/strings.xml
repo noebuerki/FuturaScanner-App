@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">FuturaScanner</string>
     <string name="expected_amount">Erwartete Anzahl</string>
     <string name="add">Hinzufügen</string>
     <string name="block_number">Block-Nummer</string>
@@ -14,4 +13,10 @@
     <string name="server">Server</string>
     <string name="item_count">Anzahl Artikel</string>
     <string name="check_connection">Verbindung prüfen</string>
+    <string name="sync">Synchronisieren</string>
+    <string name="settings">Einstellungen</string>
+    <string name="edit_block">Block bearbeiten</string>
+    <string name="add_ean">EAN hinzufügen</string>
+    <string name="enter_ean">EAN eingeben</string>
+    <string name="add_block">Block hinzufügen</string>
 </resources>

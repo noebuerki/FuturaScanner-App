@@ -37,7 +37,6 @@ public class SettingsFragment extends Fragment {
             settings = new Settings(1, "", 1, "");
             settings.setId(1);
             AppDataBase.databaseWriteExecutor.execute(() -> settingsDao.insert(settings));
-            settings = settingsDao.getAll().get(0);
         }
 
         TextWatcher textWatcher = new TextWatcher() {

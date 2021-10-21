@@ -1,6 +1,5 @@
 package ch.noebuerki.futurascanner.ui.scan;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,7 +26,6 @@ import ch.noebuerki.futurascanner.ui.scan.helpers.scanner.PreviewHandler;
 
 public class ScanActivity extends AppCompatActivity {
 
-    private Context context;
     private ItemDao itemDao;
     private Analyzer analyzer;
     private Block currentBlock;

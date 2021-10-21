@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:505290837641:android:6c960b6a775f4efdfd0058",
+        "mobilesdk_app_id": "1:505290837641:android:43d1e589665d8babfd0058",
         "android_client_info": {
-          "package_name": "ch.buerki.futurascanner"
+          "package_name": "ch.noebuerki.futurascanner"
         }
       },
       "oauth_client": [

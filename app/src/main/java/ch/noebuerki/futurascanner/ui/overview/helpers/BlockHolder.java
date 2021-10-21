@@ -43,7 +43,7 @@ public class BlockHolder extends RecyclerView.ViewHolder {
         itemView.setTag(block.getId());
         title.setText("Block " + block.getNumber());
         details.setText(itemCount + "/" + block.getTargetQuantity());
-        if (itemCount != block.getTargetQuantity()){
+        if (itemCount != block.getTargetQuantity()) {
             details.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.red));
         }
         editIcon.setTag(block.getId());

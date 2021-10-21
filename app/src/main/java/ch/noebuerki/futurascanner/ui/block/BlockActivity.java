@@ -85,7 +85,7 @@ public class BlockActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent.hasExtra("blockId")) {
-            setTitle("Block bearbeiten");
+            setTitle(getString(R.string.edit_block));
             int blockId = getIntent().getIntExtra("blockId", 0);
 
             itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
@@ -94,7 +94,7 @@ public class BlockActivity extends AppCompatActivity {
             blockNumberField.setText(Integer.toString(currentBlock.getNumber()));
             targetQuantityField.setText(Integer.toString(currentBlock.getTargetQuantity()));
 
-            saveButton.setText("Aktualisieren");
+            saveButton.setText(getString(R.string.update));
 
             saveButton.setOnClickListener(v -> {
                 currentBlock.setNumber(Integer.parseInt(blockNumberField.getText().toString()));

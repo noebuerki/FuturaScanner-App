@@ -40,7 +40,7 @@ public class FragmentEANDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setTitle("EAN hinzufügen").setMessage("EAN eingeben");
+        builder.setTitle(getString(R.string.add_ean)).setMessage(getString(R.string.enter_ean));
 
         ConstraintLayout constraintLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.fragment_ean_dialog, null);
         editText = constraintLayout.findViewById(R.id.ean_field_barcode);
