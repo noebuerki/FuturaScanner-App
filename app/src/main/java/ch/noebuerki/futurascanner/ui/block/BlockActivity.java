@@ -33,8 +33,8 @@ public class BlockActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.b_button_save);
         ImageView deleteButton = findViewById(R.id.b_button_delete);
 
-        TextView blockNumberField = ((TextView) findViewById(R.id.b_field_number));
-        TextView targetQuantityField = ((TextView) findViewById(R.id.b_field_expected_quantity));
+        TextView blockNumberField = findViewById(R.id.b_field_number);
+        TextView targetQuantityField = findViewById(R.id.b_field_expected_quantity);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override

@@ -4,7 +4,9 @@
     package="ch.noebuerki.futurascanner">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera2" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +18,10 @@
         <activity
             android:name="ch.noebuerki.futurascanner.MainActivity"
             android:configChanges="keyboardHidden"
-            android:label="@string/app_name"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +33,9 @@
             android:name="ch.noebuerki.futurascanner.ui.block.BlockActivity"
             android:configChanges="keyboardHidden"
             android:label="@string/add_block"
-            android:windowSoftInputMode="adjustResize"
             android:parentActivityName="ch.noebuerki.futurascanner.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="ch.noebuerki.futurascanner.ui.scan.ScanActivity"

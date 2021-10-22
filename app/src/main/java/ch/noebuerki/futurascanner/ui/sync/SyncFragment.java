@@ -108,6 +108,12 @@ public class SyncFragment extends Fragment {
             binding.syImageSyncDataOk.setVisibility(View.INVISIBLE);
             binding.syImageSyncDataFail.setVisibility(View.INVISIBLE);
             binding.syProgressSyncData.setVisibility(View.VISIBLE);
+
+            binding.syButtonCheckConnection.setEnabled(false);
+            requireActivity().findViewById(R.id.navigation_scan).setClickable(false);
+            requireActivity().findViewById(R.id.navigation_sync).setClickable(false);
+            requireActivity().findViewById(R.id.navigation_settings).setClickable(false);
+
             connector.sendString(message, finalSettings, this.getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
@@ -116,12 +122,21 @@ public class SyncFragment extends Fragment {
                     binding.syButtonCheckConnection.setEnabled(false);
                     binding.syImageSyncDataOk.setVisibility(View.VISIBLE);
                     binding.syProgressSyncData.setVisibility(View.INVISIBLE);
+
+                    requireActivity().findViewById(R.id.navigation_scan).setClickable(true);
+                    requireActivity().findViewById(R.id.navigation_sync).setClickable(true);
+                    requireActivity().findViewById(R.id.navigation_settings).setClickable(true);
                 }
 
                 @Override
                 public void onFail() {
                     binding.syImageSyncDataFail.setVisibility(View.VISIBLE);
                     binding.syProgressSyncData.setVisibility(View.INVISIBLE);
+
+                    binding.syButtonCheckConnection.setEnabled(false);
+                    requireActivity().findViewById(R.id.navigation_scan).setClickable(true);
+                    requireActivity().findViewById(R.id.navigation_sync).setClickable(true);
+                    requireActivity().findViewById(R.id.navigation_settings).setClickable(true);
                 }
             });
         });
