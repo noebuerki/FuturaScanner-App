@@ -42,17 +42,17 @@ public class ScanActivity extends AppCompatActivity {
 
         analyzer = new Analyzer();
         beepPlayer = new BeepPlayer(getApplicationContext());
-        previewHandler = new PreviewHandler(findViewById(R.id.s_preview), this);
+        previewHandler = new PreviewHandler(findViewById(R.id.preview), this);
 
         BlockDao blockDao = AppDataBase.getDatabase(getApplicationContext()).blockDao();
         itemDao = AppDataBase.getDatabase(getApplicationContext()).itemDao();
 
         currentBlock = blockDao.getById(getIntent().getIntExtra("blockId", 0));
-        binding.scTextBlock.setText("Block " + currentBlock.getNumber());
+        binding.blockText.setText("Block " + currentBlock.getNumber());
 
-        binding.scListItems.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        binding.itemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         ItemAdapter itemAdapter = new ItemAdapter(new ItemAdapter.LocationDiff(), v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this, R.style.AlertDialogTextColor);
             builder
                     .setTitle(getString(R.string.delete))
                     .setMessage(getString(R.string.confirm_delete_of_item))
@@ -60,17 +60,17 @@ public class ScanActivity extends AppCompatActivity {
                     .setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.cancel())
                     .show();
         });
-        binding.scListItems.setAdapter(itemAdapter);
+        binding.itemList.setAdapter(itemAdapter);
 
-        binding.scToggleTorch.setOnClickListener(v -> {
+        binding.torchToggle.setOnClickListener(v -> {
             if (previewHandler.toggleTorch()) {
-                binding.scToggleTorch.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_on_36));
+                binding.torchToggle.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_on_36));
             } else {
-                binding.scToggleTorch.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_off_36));
+                binding.torchToggle.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_flash_off_36));
             }
         });
 
-        binding.scButtonScan.setOnClickListener(v -> {
+        binding.scanButton.setOnClickListener(v -> {
             try {
                 analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
                     AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
@@ -81,7 +81,7 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
-        binding.scButtonWrite.setOnClickListener(v -> {
+        binding.addItemButton.setOnClickListener(v -> {
             DialogFragment dialogFragment = new FragmentEANDialog(currentBlock.getId(), itemDao, beepPlayer);
             dialogFragment.show(getSupportFragmentManager(), "AddEanFragment");
         });
@@ -99,7 +99,7 @@ public class ScanActivity extends AppCompatActivity {
             if (hasListChanged) {
                 AppDataBase.databaseWriteExecutor.execute(() -> itemDao.update(items.toArray(new Item[0])));
             } else {
-                binding.scTextCounter.setText(items.size() + " / " + currentBlock.getTargetQuantity());
+                binding.counterText.setText(items.size() + " / " + currentBlock.getTargetQuantity());
                 if (items.size() == currentBlock.getTargetQuantity() && !firstScroll) {
                     new Thread(() -> {
                         try {
@@ -114,9 +114,9 @@ public class ScanActivity extends AppCompatActivity {
                 if (items.size() > 0) {
                     if (firstScroll) {
                         firstScroll = false;
-                        binding.scListItems.scrollToPosition(items.size() - 1);
+                        binding.itemList.scrollToPosition(items.size() - 1);
                     } else {
-                        binding.scListItems.smoothScrollToPosition(items.size() - 1);
+                        binding.itemList.smoothScrollToPosition(items.size() - 1);
                     }
                 }
             }
@@ -125,17 +125,20 @@ public class ScanActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) && System.nanoTime() - lastScan >= 1000000000) {
-            lastScan = System.nanoTime();
-            try {
-                analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
-                    AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
-                    beepPlayer.playShort();
-                });
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+            if (System.nanoTime() - lastScan >= 1000000000) {
+                lastScan = System.nanoTime();
+                try {
+                    analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
+                        AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
+                        beepPlayer.playShort();
+                    });
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

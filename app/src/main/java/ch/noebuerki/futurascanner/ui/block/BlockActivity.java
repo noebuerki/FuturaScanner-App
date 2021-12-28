@@ -62,10 +62,10 @@ public class BlockActivity extends AppCompatActivity {
                     hasTargetQuantityChanged = !"".equals(binding.targetQuantityField.getText().toString());
                 }
 
-                if (isUpdateView){
-                    binding.buttonSave.setEnabled(hasBlockNumberChanged || hasTargetQuantityChanged);
+                if (isUpdateView) {
+                    binding.saveButton.setEnabled(hasBlockNumberChanged || hasTargetQuantityChanged);
                 } else {
-                    binding.buttonSave.setEnabled(hasBlockNumberChanged && hasTargetQuantityChanged);
+                    binding.saveButton.setEnabled(hasBlockNumberChanged && hasTargetQuantityChanged);
                 }
             }
         };
@@ -73,7 +73,7 @@ public class BlockActivity extends AppCompatActivity {
         binding.blockNumberField.addTextChangedListener(textWatcher);
         binding.targetQuantityField.addTextChangedListener(textWatcher);
 
-        binding.buttonSave.setOnClickListener(v -> {
+        binding.saveButton.setOnClickListener(v -> {
             EditText blockNumberField = binding.blockNumberField;
             String blockNumber = blockNumberField.getText().toString();
             boolean isBlockNumberValid = false;
@@ -112,7 +112,7 @@ public class BlockActivity extends AppCompatActivity {
         });
 
         binding.deleteButton.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(BlockActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(BlockActivity.this, R.style.AlertDialogTextColor);
             builder
                     .setTitle(getString(R.string.delete))
                     .setMessage(getString(R.string.confirm_delete_of_block))
@@ -137,7 +137,7 @@ public class BlockActivity extends AppCompatActivity {
             binding.blockNumberField.setText(Integer.toString(currentBlock.getNumber()));
             binding.targetQuantityField.setText(Integer.toString(currentBlock.getTargetQuantity()));
 
-            binding.buttonSave.setText(getString(R.string.update));
+            binding.saveButton.setText(getString(R.string.update));
         } else {
             binding.deleteButton.setVisibility(View.GONE);
         }

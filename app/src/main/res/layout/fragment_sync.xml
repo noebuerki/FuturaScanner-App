@@ -7,29 +7,29 @@
     tools:context=".ui.sync.SyncFragment">
 
     <ImageView
-        android:id="@+id/sy_image_sync_data_ok"
+        android:id="@+id/sync_data_ok_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundTintMode="add"
         app:srcCompat="@drawable/ic_baseline_check_36"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_sync_data"
+        app:layout_constraintBottom_toBottomOf="@+id/sync_data_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_sync_data" />
+        app:layout_constraintTop_toTopOf="@+id/sync_data_button" />
 
     <ImageView
-        android:id="@+id/sy_image_sync_data_fail"
+        android:id="@+id/sync_data_fail_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rotation="45"
         app:srcCompat="@drawable/ic_baseline_add_36"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_sync_data"
+        app:layout_constraintBottom_toBottomOf="@+id/sync_data_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_sync_data" />
+        app:layout_constraintTop_toTopOf="@+id/sync_data_button" />
 
     <Button
-        android:id="@+id/sy_button_sync_data"
+        android:id="@+id/sync_data_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -37,12 +37,12 @@
         android:text="@string/sync_data"
         android:textSize="16sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/sy_button_delete_local"
+        app:layout_constraintBottom_toTopOf="@+id/delete_local_button"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_button_check_connection" />
+        app:layout_constraintTop_toBottomOf="@+id/check_connection_button" />
 
     <Button
-        android:id="@+id/sy_button_delete_local"
+        android:id="@+id/delete_local_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -52,20 +52,20 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_button_sync_data" />
+        app:layout_constraintTop_toBottomOf="@+id/sync_data_button" />
 
     <TextView
-        android:id="@+id/sy_text_branch_result"
+        android:id="@+id/branch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
         android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_branch" />
+        app:layout_constraintTop_toTopOf="@+id/branch_text" />
 
     <TextView
-        android:id="@+id/sy_text_date"
+        android:id="@+id/date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -73,20 +73,20 @@
         android:text="@string/date"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_branch" />
+        app:layout_constraintTop_toBottomOf="@+id/branch_text" />
 
     <TextView
-        android:id="@+id/sy_text_date_result"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
         android:text="XX.XX.XXXX"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_date" />
+        app:layout_constraintTop_toTopOf="@+id/date_text" />
 
     <TextView
-        android:id="@+id/sy_text_branch"
+        android:id="@+id/branch_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -94,20 +94,20 @@
         android:text="@string/branch"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_server" />
+        app:layout_constraintTop_toBottomOf="@+id/server_ip_text" />
 
     <TextView
-        android:id="@+id/sy_text_server_result"
+        android:id="@+id/server_ip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
         android:text="XXX.XXX.XXX.XXX"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_server" />
+        app:layout_constraintTop_toTopOf="@+id/server_ip_text" />
 
     <TextView
-        android:id="@+id/sy_text_server"
+        android:id="@+id/server_ip_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -115,10 +115,10 @@
         android:text="@string/server"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_device_number" />
+        app:layout_constraintTop_toBottomOf="@+id/device_number_text" />
 
     <TextView
-        android:id="@+id/sy_text_device_number"
+        android:id="@+id/device_number_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -126,30 +126,30 @@
         android:text="@string/device_number"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_item_count" />
+        app:layout_constraintTop_toBottomOf="@+id/item_count_text" />
 
     <TextView
-        android:id="@+id/sy_text_block_count_result"
+        android:id="@+id/item_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
         android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_item_count" />
+        app:layout_constraintTop_toTopOf="@+id/item_count_text" />
 
     <TextView
-        android:id="@+id/sy_text_device_number_result"
+        android:id="@+id/device_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_mono"
         android:text="X"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_text_device_number" />
+        app:layout_constraintTop_toTopOf="@+id/device_number_text" />
 
     <TextView
-        android:id="@+id/sy_text_item_count"
+        android:id="@+id/item_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -174,56 +174,56 @@
         app:layout_constraintGuide_end="16dp" />
 
     <Button
-        android:id="@+id/sy_button_check_connection"
+        android:id="@+id/check_connection_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:enabled="false"
         android:text="@string/check_connection"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/sy_button_sync_data"
+        app:layout_constraintBottom_toTopOf="@+id/sync_data_button"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/sy_text_date" />
+        app:layout_constraintTop_toBottomOf="@+id/date_text" />
 
     <ImageView
-        android:id="@+id/sy_image_check_connection_ok"
+        android:id="@+id/check_connection_ok_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_baseline_check_36"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_check_connection"
+        app:layout_constraintBottom_toBottomOf="@+id/check_connection_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_check_connection" />
+        app:layout_constraintTop_toTopOf="@+id/check_connection_button" />
 
     <ImageView
-        android:id="@+id/sy_image_check_connection_fail"
+        android:id="@+id/check_connection_fail_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rotation="45"
         app:srcCompat="@drawable/ic_baseline_add_36"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_check_connection"
+        app:layout_constraintBottom_toBottomOf="@+id/check_connection_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_check_connection" />
+        app:layout_constraintTop_toTopOf="@+id/check_connection_button" />
 
     <ProgressBar
-        android:id="@+id/sy_progress_check_connection"
+        android:id="@+id/check_connection_progress"
         style="?android:attr/progressBarStyle"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_check_connection"
+        app:layout_constraintBottom_toBottomOf="@+id/check_connection_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_check_connection" />
+        app:layout_constraintTop_toTopOf="@+id/check_connection_button" />
 
     <ProgressBar
-        android:id="@+id/sy_progress_sync_data"
+        android:id="@+id/sync_data_progress"
         style="?android:attr/progressBarStyle"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/sy_button_sync_data"
+        app:layout_constraintBottom_toBottomOf="@+id/sync_data_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/sy_button_sync_data" />
+        app:layout_constraintTop_toTopOf="@+id/sync_data_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

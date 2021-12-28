@@ -39,7 +39,7 @@ public class SyncFragment extends Fragment {
         boolean canTestConnection = true;
 
         List<Item> itemList = itemDao.getAll();
-        binding.syTextBlockCountResult.setText(Integer.toString(itemList.size()));
+        binding.itemCount.setText(Integer.toString(itemList.size()));
 
         if (itemList.size() < 1) {
             canTestConnection = false;
@@ -50,66 +50,66 @@ public class SyncFragment extends Fragment {
         if (!settingsList.isEmpty()) {
             settings = settingsList.get(0);
 
-            binding.syTextDeviceNumberResult.setText(Integer.toString(settings.getDeviceNumber()));
+            binding.deviceNumber.setText(Integer.toString(settings.getDeviceNumber()));
 
             if (settings.getServerIp().equals("")) {
                 canTestConnection = false;
-                binding.syTextServerResult.setText("-");
+                binding.serverIp.setText("-");
             } else {
-                binding.syTextServerResult.setText(settings.getServerIp());
+                binding.serverIp.setText(settings.getServerIp());
             }
 
-            binding.syTextBranchResult.setText(Integer.toString(settings.getBranch()));
+            binding.branch.setText(Integer.toString(settings.getBranch()));
 
             if (settings.getDate().equals("")) {
                 canTestConnection = false;
-                binding.syTextDateResult.setText("-");
+                binding.date.setText("-");
             } else {
-                binding.syTextDateResult.setText(settings.getDate());
+                binding.date.setText(settings.getDate());
             }
         } else {
             canTestConnection = false;
-            binding.syTextDeviceNumberResult.setText("-");
-            binding.syTextServerResult.setText("-");
-            binding.syTextBranchResult.setText("-");
-            binding.syTextDateResult.setText("-");
+            binding.itemCount.setText("-");
+            binding.serverIp.setText("-");
+            binding.branch.setText("-");
+            binding.date.setText("-");
         }
 
         if (canTestConnection) {
-            binding.syButtonCheckConnection.setEnabled(true);
+            binding.checkConnectionButton.setEnabled(true);
         }
 
         Connector connector = new Connector();
         Settings finalSettings = settings;
 
-        binding.syButtonCheckConnection.setOnClickListener(v -> {
-            binding.syImageCheckConnectionOk.setVisibility(View.INVISIBLE);
-            binding.syImageCheckConnectionFail.setVisibility(View.INVISIBLE);
-            binding.syProgressCheckConnection.setVisibility(View.VISIBLE);
+        binding.checkConnectionButton.setOnClickListener(v -> {
+            binding.checkConnectionOkImage.setVisibility(View.INVISIBLE);
+            binding.checkConnectionFailImage.setVisibility(View.INVISIBLE);
+            binding.checkConnectionProgress.setVisibility(View.VISIBLE);
             connector.testConnection(finalSettings, getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
-                    binding.syButtonSyncData.setEnabled(true);
-                    binding.syImageCheckConnectionOk.setVisibility(View.VISIBLE);
-                    binding.syProgressCheckConnection.setVisibility(View.INVISIBLE);
+                    binding.syncDataButton.setEnabled(true);
+                    binding.checkConnectionOkImage.setVisibility(View.VISIBLE);
+                    binding.checkConnectionFailImage.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onFail() {
-                    binding.syImageCheckConnectionFail.setVisibility(View.VISIBLE);
-                    binding.syProgressCheckConnection.setVisibility(View.INVISIBLE);
+                    binding.checkConnectionFailImage.setVisibility(View.VISIBLE);
+                    binding.checkConnectionOkImage.setVisibility(View.INVISIBLE);
                 }
             });
         });
 
-        binding.syButtonSyncData.setOnClickListener(v -> {
+        binding.syncDataButton.setOnClickListener(v -> {
             StringConverter stringConverter = new StringConverter();
             String message = stringConverter.generateString(blockDao, itemDao, finalSettings);
-            binding.syImageSyncDataOk.setVisibility(View.INVISIBLE);
-            binding.syImageSyncDataFail.setVisibility(View.INVISIBLE);
-            binding.syProgressSyncData.setVisibility(View.VISIBLE);
+            binding.syncDataOkImage.setVisibility(View.INVISIBLE);
+            binding.syncDataFailImage.setVisibility(View.INVISIBLE);
+            binding.syncDataProgress.setVisibility(View.VISIBLE);
 
-            binding.syButtonCheckConnection.setEnabled(false);
+            binding.checkConnectionButton.setEnabled(false);
             requireActivity().findViewById(R.id.navigation_scan).setClickable(false);
             requireActivity().findViewById(R.id.navigation_sync).setClickable(false);
             requireActivity().findViewById(R.id.navigation_settings).setClickable(false);
@@ -117,11 +117,11 @@ public class SyncFragment extends Fragment {
             connector.sendString(message, finalSettings, getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
-                    binding.syButtonSyncData.setEnabled(false);
-                    binding.syButtonDeleteLocal.setEnabled(true);
-                    binding.syButtonCheckConnection.setEnabled(false);
-                    binding.syImageSyncDataOk.setVisibility(View.VISIBLE);
-                    binding.syProgressSyncData.setVisibility(View.INVISIBLE);
+                    binding.syncDataButton.setEnabled(false);
+                    binding.deleteLocalButton.setEnabled(true);
+                    binding.checkConnectionButton.setEnabled(false);
+                    binding.syncDataOkImage.setVisibility(View.VISIBLE);
+                    binding.syncDataProgress.setVisibility(View.INVISIBLE);
 
                     requireActivity().findViewById(R.id.navigation_scan).setClickable(true);
                     requireActivity().findViewById(R.id.navigation_sync).setClickable(true);
@@ -130,10 +130,10 @@ public class SyncFragment extends Fragment {
 
                 @Override
                 public void onFail() {
-                    binding.syImageSyncDataFail.setVisibility(View.VISIBLE);
-                    binding.syProgressSyncData.setVisibility(View.INVISIBLE);
+                    binding.syncDataFailImage.setVisibility(View.VISIBLE);
+                    binding.syncDataProgress.setVisibility(View.INVISIBLE);
 
-                    binding.syButtonCheckConnection.setEnabled(false);
+                    binding.checkConnectionButton.setEnabled(false);
                     requireActivity().findViewById(R.id.navigation_scan).setClickable(true);
                     requireActivity().findViewById(R.id.navigation_sync).setClickable(true);
                     requireActivity().findViewById(R.id.navigation_settings).setClickable(true);
@@ -141,7 +141,7 @@ public class SyncFragment extends Fragment {
             });
         });
 
-        binding.syButtonDeleteLocal.setOnClickListener(v -> {
+        binding.deleteLocalButton.setOnClickListener(v -> {
             blockDao.deleteAll();
             itemDao.deleteAll();
 

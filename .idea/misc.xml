@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable-night/alertialog_theme.xml" value="0.26666666666666666" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable-night/navigation_color.xml" value="0.26666666666666666" />
+        <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable-notnight/navigation_color.xml" value="0.26666666666666666" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.38333333333333336" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/activity_block.xml" value="0.4" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/activity_main.xml" value="0.30344202898550726" />

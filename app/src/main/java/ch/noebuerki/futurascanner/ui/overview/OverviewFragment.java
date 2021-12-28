@@ -25,7 +25,7 @@ public class OverviewFragment extends Fragment {
 
         binding = FragmentOverviewBinding.inflate(inflater, container, false);
 
-        binding.oListBlocks.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.blockList.setLayoutManager(new LinearLayoutManager(getContext()));
         BlockAdapter blockAdapter = new BlockAdapter(new BlockAdapter.LocationDiff(), v -> {
             Intent intent = new Intent(getContext(), ScanActivity.class);
             intent.putExtra("blockId", Integer.parseInt(v.getTag().toString()));
@@ -35,11 +35,11 @@ public class OverviewFragment extends Fragment {
             intent.putExtra("blockId", Integer.parseInt(v.getTag().toString()));
             startActivity(intent);
         }, AppDataBase.getDatabase(getContext()).itemDao());
-        binding.oListBlocks.setAdapter(blockAdapter);
+        binding.blockList.setAdapter(blockAdapter);
 
         AppDataBase.getDatabase(getContext()).blockDao().getAllAsLiveData().observe(getViewLifecycleOwner(), blockAdapter::submitList);
 
-        binding.oButtonAdd.setOnClickListener(v -> startActivity(new Intent(getContext(), BlockActivity.class)));
+        binding.addBlockButton.setOnClickListener(v -> startActivity(new Intent(getContext(), BlockActivity.class)));
 
         return binding.getRoot();
     }

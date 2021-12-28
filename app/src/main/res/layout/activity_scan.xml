@@ -7,7 +7,7 @@
     tools:context=".ui.scan.ScanActivity">
 
     <Button
-        android:id="@+id/sc_button_scan"
+        android:id="@+id/scan_button"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -18,10 +18,10 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sc_button_write" />
+        app:layout_constraintStart_toEndOf="@+id/add_item_button" />
 
     <Button
-        android:id="@+id/sc_button_write"
+        android:id="@+id/add_item_button"
         android:layout_width="70dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/sc_text_block"
+        android:id="@+id/block_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sc_text_counter"
+        android:id="@+id/counter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -54,39 +54,39 @@
         android:text="Y / Z"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sc_text_block" />
+        app:layout_constraintTop_toTopOf="@+id/block_text" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sc_list_items"
+        android:id="@+id/item_list"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/sc_button_scan"
+        app:layout_constraintBottom_toTopOf="@+id/scan_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/s_preview"
+        android:id="@+id/preview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/sc_list_items"
+        app:layout_constraintBottom_toTopOf="@+id/item_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sc_text_block">
+        app:layout_constraintTop_toBottomOf="@+id/block_text">
 
     </androidx.camera.view.PreviewView>
 
     <ImageView
-        android:id="@+id/sc_toggle_torch"
+        android:id="@+id/torch_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/s_preview"
+        app:layout_constraintTop_toTopOf="@+id/preview"
         app:srcCompat="@drawable/ic_baseline_flash_off_36"
         app:tint="@color/white" />
 

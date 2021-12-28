@@ -59,33 +59,33 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                boolean hasDeviceNumberChanged = !Integer.toString(settings.getDeviceNumber()).equals(binding.seFieldDeviceNumber.getText().toString()) && !binding.seFieldDeviceNumber.getText().toString().equals("");
+                boolean hasDeviceNumberChanged = !Integer.toString(settings.getDeviceNumber()).equals(binding.deviceNumberField.getText().toString()) && !binding.deviceNumberField.getText().toString().equals("");
 
-                boolean hasServerIpChanged = !settings.getServerIp().equals(binding.seFieldServerIp.getText().toString()) && !binding.seFieldServerIp.getText().toString().equals("");
+                boolean hasServerIpChanged = !settings.getServerIp().equals(binding.serverIpField.getText().toString()) && !binding.serverIpField.getText().toString().equals("");
 
-                boolean hasBranchChanged = !Integer.toString(settings.getBranch()).equals(binding.seFieldBranch.getText().toString()) && !binding.seFieldBranch.getText().toString().equals("");
+                boolean hasBranchChanged = !Integer.toString(settings.getBranch()).equals(binding.branchField.getText().toString()) && !binding.branchField.getText().toString().equals("");
 
-                boolean hasDateChanged = !settings.getDate().equals(binding.seFieldDate.getText().toString()) && !binding.seFieldDate.getText().toString().equals("");
+                boolean hasDateChanged = !settings.getDate().equals(binding.dateField.getText().toString()) && !binding.dateField.getText().toString().equals("");
 
                 if (defaultSettings) {
-                    binding.seButtonUpdate.setEnabled(hasServerIpChanged && hasDateChanged);
+                    binding.updateButton.setEnabled(hasServerIpChanged && hasDateChanged);
                 } else {
-                    binding.seButtonUpdate.setEnabled(hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged);
+                    binding.updateButton.setEnabled(hasDeviceNumberChanged || hasServerIpChanged || hasBranchChanged || hasDateChanged);
                 }
             }
         };
 
-        binding.seFieldDeviceNumber.setText(Integer.toString(settings.getDeviceNumber()));
-        binding.seFieldDeviceNumber.addTextChangedListener(textWatcher);
-        binding.seFieldServerIp.setText(settings.getServerIp());
-        binding.seFieldServerIp.addTextChangedListener(textWatcher);
-        binding.seFieldBranch.setText(Integer.toString(settings.getBranch()));
-        binding.seFieldBranch.addTextChangedListener(textWatcher);
-        binding.seFieldDate.setText(settings.getDate());
-        binding.seFieldDate.addTextChangedListener(textWatcher);
+        binding.deviceNumberField.setText(Integer.toString(settings.getDeviceNumber()));
+        binding.deviceNumberField.addTextChangedListener(textWatcher);
+        binding.serverIpField.setText(settings.getServerIp());
+        binding.serverIpField.addTextChangedListener(textWatcher);
+        binding.branchField.setText(Integer.toString(settings.getBranch()));
+        binding.branchField.addTextChangedListener(textWatcher);
+        binding.dateField.setText(settings.getDate());
+        binding.dateField.addTextChangedListener(textWatcher);
 
-        binding.seButtonUpdate.setOnClickListener(v -> {
-            EditText deviceNumberField = binding.seFieldDeviceNumber;
+        binding.updateButton.setOnClickListener(v -> {
+            EditText deviceNumberField = binding.deviceNumberField;
             String deviceNumber = deviceNumberField.getText().toString();
             boolean isDeviceNumberValid = false;
             if (Pattern.matches("^[1-9]{1}[0-9]{0,}$", deviceNumber)) {
@@ -96,7 +96,7 @@ public class SettingsFragment extends Fragment {
                 deviceNumberField.setError(requireContext().getString(R.string.numeric_value_required));
             }
 
-            EditText serverIpField = binding.seFieldServerIp;
+            EditText serverIpField = binding.serverIpField;
             String serverIp = serverIpField.getText().toString();
             boolean isServerIpValid = false;
             if (Pattern.matches("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", serverIp)) {
@@ -107,7 +107,7 @@ public class SettingsFragment extends Fragment {
                 serverIpField.setError(requireContext().getString(R.string.valid_ip_required));
             }
 
-            EditText branchField = binding.seFieldBranch;
+            EditText branchField = binding.branchField;
             String branch = branchField.getText().toString();
             boolean isBranchValid = false;
             if (Pattern.matches("^[1-9]{1}[0-9]{0,}$", branch)) {
@@ -118,7 +118,7 @@ public class SettingsFragment extends Fragment {
                 branchField.setError(requireContext().getString(R.string.valid_branch_required));
             }
 
-            EditText dateField = binding.seFieldDate;
+            EditText dateField = binding.dateField;
             String date = dateField.getText().toString();
             boolean isDateValid = false;
             if (Pattern.matches("^\\s*(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})\\s*$", date)) {
@@ -135,7 +135,7 @@ public class SettingsFragment extends Fragment {
                 defaultSettings = false;
             }
         });
-        binding.seButtonUpdate.setEnabled(false);
+        binding.updateButton.setEnabled(false);
 
         return binding.getRoot();
     }

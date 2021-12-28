@@ -7,7 +7,7 @@
     tools:context=".ui.overview.OverviewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/o_list_blocks"
+        android:id="@+id/block_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/o_button_add"
+        android:id="@+id/add_block_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
