@@ -19,4 +19,14 @@
     <string name="add_ean">EAN hinzufügen</string>
     <string name="enter_ean">EAN eingeben</string>
     <string name="add_block">Block hinzufügen</string>
+    <string name="confirm_delete_of_item">Bestätige das löschen der Position</string>
+    <string name="delete">Löschen</string>
+    <string name="yes">Ja</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="numeric_value_required">Ein numerischer Wert ist erforderlich</string>
+    <string name="valid_ip_required">Eine gültige IP-Adresse ist erforderlich</string>
+    <string name="valid_branch_required">Eine gültige Filial-Nummer ist erforderlich</string>
+    <string name="valid_date_required">Ein gültiges Datum ist erforderlich</string>
+    <string name="confirm_delete_of_block">Bestätige das löschen des Blocks</string>
+    <string name="block_number_taken">Diese Block-Nummer ist bereits vergeben</string>
 </resources>

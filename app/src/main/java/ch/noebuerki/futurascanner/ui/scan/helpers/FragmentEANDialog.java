@@ -1,6 +1,5 @@
 package ch.noebuerki.futurascanner.ui.scan.helpers;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
@@ -11,10 +10,13 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.regex.Pattern;
 
 import ch.noebuerki.futurascanner.R;
 import ch.noebuerki.futurascanner.database.local.dal.ItemDao;
@@ -48,33 +50,25 @@ public class FragmentEANDialog extends DialogFragment {
 
         builder.setPositiveButton("Hinzufügen", null);
 
-        builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onCancel(dialog);
-            }
-        });
+        builder.setNegativeButton("Abbrechen", (dialog, which) -> onCancel(dialog));
 
         AlertDialog alertDialog = builder.create();
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                if ((requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
-                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
-                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
-                }
-                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String ean = editText.getText().toString();
-                        if (ean.length() == 12 || ean.length() == 13) {
-                            itemDao.insert(new Item(blockId, ean));
-                            beepPlayer.playShort();
-                            dialog.dismiss();
-                        }
-                    }
-                });
+        alertDialog.setOnShowListener(dialog -> {
+            if ((requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
+                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
             }
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String ean = editText.getText().toString();
+                    if (Pattern.matches("^[0-9]{12,13}$", ean)) {
+                        itemDao.insert(new Item(blockId, ean));
+                        beepPlayer.playShort();
+                        dialog.dismiss();
+                    }
+                }
+            });
         });
         return alertDialog;
     }

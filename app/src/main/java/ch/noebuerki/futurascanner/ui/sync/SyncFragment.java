@@ -86,7 +86,7 @@ public class SyncFragment extends Fragment {
             binding.syImageCheckConnectionOk.setVisibility(View.INVISIBLE);
             binding.syImageCheckConnectionFail.setVisibility(View.INVISIBLE);
             binding.syProgressCheckConnection.setVisibility(View.VISIBLE);
-            connector.testConnection(finalSettings, this.getActivity(), new ConnectorCallback() {
+            connector.testConnection(finalSettings, getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
                     binding.syButtonSyncData.setEnabled(true);
@@ -114,7 +114,7 @@ public class SyncFragment extends Fragment {
             requireActivity().findViewById(R.id.navigation_sync).setClickable(false);
             requireActivity().findViewById(R.id.navigation_settings).setClickable(false);
 
-            connector.sendString(message, finalSettings, this.getActivity(), new ConnectorCallback() {
+            connector.sendString(message, finalSettings, getActivity(), new ConnectorCallback() {
                 @Override
                 public void onSuccess() {
                     binding.syButtonSyncData.setEnabled(false);

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable-night/navigation_color.xml" value="0.26666666666666666" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.38333333333333336" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/activity_block.xml" value="0.4" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/activity_main.xml" value="0.30344202898550726" />
@@ -13,7 +14,7 @@
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/fragment_settings.xml" value="0.18568840579710144" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/fragment_sync.xml" value="0.1490036231884058" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/layout/item_row_item.xml" value="0.1490036231884058" />
-        <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3671875" />
+        <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/DEV/Android/FuturaScanner-App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.38333333333333336" />
       </map>
     </option>

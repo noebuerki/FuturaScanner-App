@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity
 public class Settings {
 
@@ -68,5 +70,9 @@ public class Settings {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean equals(Settings settings) {
+        return deviceNumber == settings.getDeviceNumber() && serverIp.equals(settings.getServerIp()) && branch == settings.getBranch() && date.equals(settings.getDate());
     }
 }

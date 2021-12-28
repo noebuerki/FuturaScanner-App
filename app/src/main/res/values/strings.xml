@@ -20,4 +20,14 @@
     <string name="add_ean">Add EAN</string>
     <string name="enter_ean">Enter EAN</string>
     <string name="add_block">Add block</string>
+    <string name="confirm_delete_of_item">Confirm deletion of the item</string>
+    <string name="confirm_delete_of_block">Confirm deletion of the block</string>
+    <string name="delete">Delete</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="numeric_value_required">A numeric value is required</string>
+    <string name="valid_ip_required">A valid ip-address is required</string>
+    <string name="valid_branch_required">A valid branch-number is required</string>
+    <string name="valid_date_required">A valid date is required</string>
+    <string name="block_number_taken">This block number is already in use</string>
 </resources>

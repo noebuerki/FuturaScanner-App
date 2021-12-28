@@ -1,6 +1,6 @@
 package ch.noebuerki.futurascanner.database.server;
 
-import android.app.Activity;
+import androidx.fragment.app.FragmentActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,7 +15,7 @@ import ch.noebuerki.futurascanner.database.local.objects.Settings;
 
 public class Connector {
 
-    public void testConnection(Settings settings, Activity activity, ConnectorCallback callback) {
+    public void testConnection(Settings settings, FragmentActivity activity, ConnectorCallback callback) {
         new Thread(() -> {
             try {
                 Socket socket = new Socket();
@@ -37,7 +37,7 @@ public class Connector {
         }).start();
     }
 
-    public void sendString(String message, Settings settings, Activity activity, ConnectorCallback callback) {
+    public void sendString(String message, Settings settings, FragmentActivity activity, ConnectorCallback callback) {
         new Thread(() -> {
             try {
                 int messageLength = StringUtils.countMatches(message, "\n");
@@ -53,7 +53,9 @@ public class Connector {
 
                 for (int deliveries = 1; deliveries <= expectedDeliveries; deliveries++) {
                     String currentMessage;
-                    if (deliveries == 1) {
+                    if (expectedDeliveries == 1) {
+                        currentMessage = message;
+                    } else if (deliveries == 1) {
                         currentMessage = message.substring(0, StringUtils.ordinalIndexOf(message, "\n", deliveries * 100));
                     } else if (deliveries == expectedDeliveries) {
                         currentMessage = message.substring(StringUtils.ordinalIndexOf(message, "\n", (deliveries - 1) * 100));

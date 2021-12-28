@@ -2,8 +2,8 @@ package ch.noebuerki.futurascanner.ui.scan;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
@@ -26,11 +26,13 @@ import ch.noebuerki.futurascanner.ui.scan.helpers.scanner.PreviewHandler;
 
 public class ScanActivity extends AppCompatActivity {
 
+    private long lastScan = 0;
     private ItemDao itemDao;
     private Analyzer analyzer;
     private Block currentBlock;
     private BeepPlayer beepPlayer;
     private PreviewHandler previewHandler;
+    private boolean firstScroll = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,15 @@ public class ScanActivity extends AppCompatActivity {
         binding.scTextBlock.setText("Block " + currentBlock.getNumber());
 
         binding.scListItems.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        ItemAdapter itemAdapter = new ItemAdapter(new ItemAdapter.LocationDiff(), v -> AppDataBase.databaseWriteExecutor.execute(() -> itemDao.deleteById(Integer.parseInt(v.getTag().toString()))));
+        ItemAdapter itemAdapter = new ItemAdapter(new ItemAdapter.LocationDiff(), v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+            builder
+                    .setTitle(getString(R.string.delete))
+                    .setMessage(getString(R.string.confirm_delete_of_item))
+                    .setPositiveButton(R.string.yes, (dialogInterface, i) -> AppDataBase.databaseWriteExecutor.execute(() -> itemDao.deleteById(Integer.parseInt(v.getTag().toString()))))
+                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.cancel())
+                    .show();
+        });
         binding.scListItems.setAdapter(itemAdapter);
 
         binding.scToggleTorch.setOnClickListener(v -> {
@@ -71,12 +81,9 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
-        binding.scButtonWrite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment dialogFragment = new FragmentEANDialog(currentBlock.getId(), itemDao, beepPlayer);
-                dialogFragment.show(getSupportFragmentManager(), "AddEanFragment");
-            }
+        binding.scButtonWrite.setOnClickListener(v -> {
+            DialogFragment dialogFragment = new FragmentEANDialog(currentBlock.getId(), itemDao, beepPlayer);
+            dialogFragment.show(getSupportFragmentManager(), "AddEanFragment");
         });
 
         itemDao.getByBlockIdAsLiveData(currentBlock.getId()).observe(this, items -> {
@@ -93,7 +100,7 @@ public class ScanActivity extends AppCompatActivity {
                 AppDataBase.databaseWriteExecutor.execute(() -> itemDao.update(items.toArray(new Item[0])));
             } else {
                 binding.scTextCounter.setText(items.size() + " / " + currentBlock.getTargetQuantity());
-                if (items.size() == currentBlock.getTargetQuantity()) {
+                if (items.size() == currentBlock.getTargetQuantity() && !firstScroll) {
                     new Thread(() -> {
                         try {
                             Thread.sleep(1000);
@@ -105,7 +112,12 @@ public class ScanActivity extends AppCompatActivity {
                 }
                 itemAdapter.submitList(items);
                 if (items.size() > 0) {
-                    binding.scListItems.smoothScrollToPosition(items.size() - 1);
+                    if (firstScroll) {
+                        firstScroll = false;
+                        binding.scListItems.scrollToPosition(items.size() - 1);
+                    } else {
+                        binding.scListItems.smoothScrollToPosition(items.size() - 1);
+                    }
                 }
             }
         });
@@ -113,7 +125,8 @@ public class ScanActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) && System.nanoTime() - lastScan >= 1000000000) {
+            lastScan = System.nanoTime();
             try {
                 analyzer.analyze(previewHandler.getLatestFrame(), barcode -> {
                     AppDataBase.databaseWriteExecutor.execute(() -> itemDao.insert(new Item(currentBlock.getId(), Objects.requireNonNull(barcode.getRawValue()))));
